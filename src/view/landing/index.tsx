@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { axiosInstance } from "../../core/network/axios";
+import { Navbar } from "./components/Navbar";
+const Landing: React.FC = () => {
+  return (
+    <div className=" h-full">
+      {/* Header Start*/}
+      <Navbar />
+      {/* Header End*/}
 
-export const Landing: React.FC = () => {
-    return (
-        <div className=" h-full">
-            {/* Header Start*/}
-            <div className="flex flex-row flex-wrap justify-between w-full bg-green-500 h-16 mb-8 py-4 px-6">
-                <p>Logo + Home</p>
-                <p>About</p>
-                <p>Pricing</p>
-                <p>Docs</p>
-                <p>Login</p>
-            </div>
-            {/* Header End*/}
+      {/* Body Start*/}
 
-            {/* Body Start*/}
-            <div className="">Body</div>
-            {/* Body End*/}
-        </div>
-    )
-}
+      <div className="flex flex-col w-full items-center py-20 ">
+        <img
+          src="/assets/images/saleBanner.webp"
+          alt=""
+          className="w-[70%] pt-24"
+        />
+      </div>
+
+      {/* Body End*/}
+    </div>
+  );
+};
+export default Landing;
