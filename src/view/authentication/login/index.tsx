@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  Formik,
+  FormikHelpers,
+  FormikProps,
+  Form,
+  Field,
+  FieldProps,
+  withFormik,
+  FormikErrors,
+} from "formik";
+import { validationSchema } from "./models/validation_schema";
+
+interface FormValues {
+  sourpy_username: string;
+  sourpy_password: string;
+}
 
 const Login: React.FC = () => {
+  const initialValues: FormValues = {
+    sourpy_username: "",
+    sourpy_password: "",
+  };
+
+  /// [pwdSecure] is using for password show/hide button
+  const [pwdSecure, setPwdSecure] = useState(true);
+
+  /// Send request if [Formik] doesn't have an error
+  const handleLogin = (error: FormikErrors<FormValues>) => {
+    if (error) {
+      console.log("Error occured! Doesnt gonna send request");
+    } else {
+      console.log("Request sent!");
+    }
+  };
+
   return (
     <div className="flex flex-row w-full h-screen ">
       {/* Left Image Side */}
@@ -14,36 +47,103 @@ const Login: React.FC = () => {
 
       {/*  Right Form Side*/}
       <div className="flex flex-col justify-center items-center  w-full h-screen  ">
-        <p className="py-4 text-green-600 text-3xl italic cursor-default">
-          Welcome to Sourpy
-        </p>
-        <input
-          type="text"
-          name="sourpy_username"
-          id="sourpy_username"
-          placeholder="Username"
-          className="w-96 h-14 shadow appearance-none border rounded py-2 px-3 text-red-700 leading-tight focus:outline-none focus:shadow-outline my-4"
-        />
-        <input
-          type="password"
-          name="sourpy_password"
-          id="sourpy_password"
-          placeholder="Password"
-          className="w-96 h-14 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline my-4"
-        />
-        <button
-          type="button"
-          className="text-white w-96 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1 mr-2 mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values, actions) => {
+            console.log({ values, actions });
+            alert(JSON.stringify(values, null, 2));
+            // actions.setSubmitting(false);
+          }}
+          validationSchema={validationSchema}
         >
-          Login
-        </button>
-        <p className="cursor-default">
-          Don't have an account yet?
-          <span className="font-bold cursor-pointer hover:underline">
-            {" "}
-            Create a new Account!
-          </span>
-        </p>
+          {(formik) => {
+            const { errors, touched, isValid } = formik;
+            return (
+              <Form className="flex flex-col justify-center items-center  w-full h-screen ">
+                <p className="py-4 text-green-600 text-3xl italic cursor-default">
+                  Welcome to Sourpy
+                </p>
+
+                {/* Username input start*/}
+                <Field
+                  id="sourpy_username"
+                  name="sourpy_username"
+                  placeholder="Username"
+                  className="w-1/2 h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
+                  errors={errors} //Formik errors object
+                  touched={touched} //Formik touched props
+                  autofocus={true}
+                />
+                {/* Username input end*/}
+
+                {/* Username errors start*/}
+
+                <p className="my-0 py-0">
+                  {errors.sourpy_username && touched.sourpy_username ? (
+                    <div>{errors.sourpy_username}</div>
+                  ) : null}
+                </p>
+
+                {/* Username errors end*/}
+
+                {/* Password label start*/}
+                <div className="relative w-1/2">
+                  {/* Password trailing start */}
+                  <div className="absolute inset-y-0 right-0  flex items-center px-2">
+                    <label
+                      className="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer"
+                      onClick={() => setPwdSecure(!pwdSecure)}
+                    >
+                      {pwdSecure == true ? "Show" : "Hide"}
+                    </label>
+                  </div>
+                  {/* Password trailing end */}
+
+                  {/* Password input start */}
+                  <Field
+                    id="sourpy_password"
+                    name="sourpy_password"
+                    placeholder="Password"
+                    type={pwdSecure == true ? "password" : "text"}
+                    className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
+                    errors={errors} //Formik errors object
+                    touched={touched} //Formik touched props
+                    autofocus={true}
+                  />
+                  {/* Password input end*/}
+                </div>
+                {/* Password errors start*/}
+                <p>
+                  {errors.sourpy_password && touched.sourpy_password ? (
+                    <div>{errors.sourpy_password}</div>
+                  ) : null}
+                </p>
+                {/* Password errors end*/}
+                {/* Password label end*/}
+
+                <p className="flex w-1/2 justify-end cursor-pointer">
+                  Forgot password
+                </p>
+
+                {/* Login Button start*/}
+                <button
+                  className="text-white w-1/2 h-12 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
+                  onClick={() => handleLogin(errors)}
+                >
+                  Login
+                </button>
+                {/* Login Button end*/}
+                <p className="cursor-default lg:text-lg text-xs">
+                  Don't have an account yet?
+                  <span className="font-bold cursor-pointer hover:underline">
+                    {" "}
+                    Create a new Account!
+                  </span>
+                </p>
+              </Form>
+            );
+          }}
+        </Formik>
       </div>
     </div>
   );

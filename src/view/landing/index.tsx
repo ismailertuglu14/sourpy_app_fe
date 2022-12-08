@@ -3,7 +3,7 @@ import { axiosInstance } from "../../core/network/axios";
 import { Navbar } from "./components/Navbar";
 const Landing: React.FC = () => {
   return (
-    <div className=" h-full">
+    <div className=" h-full ">
       {/* Header Start*/}
       <Navbar />
       {/* Header End*/}

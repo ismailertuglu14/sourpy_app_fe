@@ -5,6 +5,9 @@ import Landing from "./view/landing";
 import NoPage from "./view/nopage/index";
 
 const Login = React.lazy(() => import("./view/authentication/login/index"));
+const Register = React.lazy(
+  () => import("./view/authentication/register/index")
+);
 // TODO: Other pages will be define as a Lazy React Component
 
 function App() {
@@ -19,7 +22,14 @@ function App() {
           </React.Suspense>
         }
       />
-
+      <Route
+        path="/register"
+        element={
+          <React.Suspense fallback={<div>...</div>}>
+            <Register />
+          </React.Suspense>
+        }
+      />
       <Route path="*" element={<NoPage />} />
     </Routes>
   );

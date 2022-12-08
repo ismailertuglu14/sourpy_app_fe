@@ -1,7 +1,7 @@
 enum ApiTypeEnums {
     TRENDYOL = "Trendyol",
     HEPSIBURADA = "Hepsiburada",
-    N11 = "N11"
+    AMAZON = "Amazon"
 }
 
 export default ApiTypeEnums
