@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
                 <a
                   href={route}
                   className={`block py-2 pl-3 pr-4 ${
-                    isActive == true ? " text-blue-700 " : " text-white "
+                    isActive === true ? " text-blue-700 " : " text-white "
                   }  md:p-0 `}
                   aria-current="page"
                 >

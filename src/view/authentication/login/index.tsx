@@ -1,37 +1,36 @@
 import React, { useState } from "react";
-import {
-  Formik,
-  FormikHelpers,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps,
-  withFormik,
-  FormikErrors,
-} from "formik";
+import { Formik, Form, Field } from "formik";
 import { validationSchema } from "./models/validation_schema";
+import { LoginRequest } from "./models/login_request";
 
 interface FormValues {
   sourpy_username: string;
   sourpy_password: string;
 }
+const initialValues: FormValues = {
+  sourpy_username: "",
+  sourpy_password: "",
+};
 
 const Login: React.FC = () => {
-  const initialValues: FormValues = {
-    sourpy_username: "",
-    sourpy_password: "",
-  };
-
   /// [pwdSecure] is using for password show/hide button
   const [pwdSecure, setPwdSecure] = useState(true);
 
   /// Send request if [Formik] doesn't have an error
-  const handleLogin = (error: FormikErrors<FormValues>) => {
-    if (error) {
-      console.log("Error occured! Doesnt gonna send request");
-    } else {
-      console.log("Request sent!");
-    }
+  const handleLogin = (formValues: FormValues) => {
+    validationSchema.isValid(formValues).then(function (isValid) {
+      if (isValid) {
+        const user = new LoginRequest(
+          formValues.sourpy_username,
+          formValues.sourpy_password
+        );
+        // TODO: Login function here.
+        // login(user)
+        console.log("Request has been sent");
+      } else {
+        console.log("Some error occured");
+      }
+    });
   };
 
   return (
@@ -51,13 +50,12 @@ const Login: React.FC = () => {
           initialValues={initialValues}
           onSubmit={(values, actions) => {
             console.log({ values, actions });
-            alert(JSON.stringify(values, null, 2));
             // actions.setSubmitting(false);
           }}
           validationSchema={validationSchema}
         >
           {(formik) => {
-            const { errors, touched, isValid } = formik;
+            const { errors, touched, values } = formik;
             return (
               <Form className="flex flex-col justify-center items-center  w-full h-screen ">
                 <p className="py-4 text-green-600 text-3xl italic cursor-default">
@@ -72,7 +70,7 @@ const Login: React.FC = () => {
                   className="w-1/2 h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                   errors={errors} //Formik errors object
                   touched={touched} //Formik touched props
-                  autofocus={true}
+                  autoFocus={true}
                 />
                 {/* Username input end*/}
 
@@ -94,7 +92,7 @@ const Login: React.FC = () => {
                       className="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer"
                       onClick={() => setPwdSecure(!pwdSecure)}
                     >
-                      {pwdSecure == true ? "Show" : "Hide"}
+                      {pwdSecure === true ? "Show" : "Hide"}
                     </label>
                   </div>
                   {/* Password trailing end */}
@@ -104,11 +102,11 @@ const Login: React.FC = () => {
                     id="sourpy_password"
                     name="sourpy_password"
                     placeholder="Password"
-                    type={pwdSecure == true ? "password" : "text"}
+                    type={pwdSecure === true ? "password" : "text"}
                     className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                     errors={errors} //Formik errors object
                     touched={touched} //Formik touched props
-                    autofocus={true}
+                    autoFocus={false}
                   />
                   {/* Password input end*/}
                 </div>
@@ -128,7 +126,7 @@ const Login: React.FC = () => {
                 {/* Login Button start*/}
                 <button
                   className="text-white w-1/2 h-12 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
-                  onClick={() => handleLogin(errors)}
+                  onClick={() => handleLogin(values)}
                 >
                   Login
                 </button>
