@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { validationSchema } from "./models/validation_schema";
 import { LoginRequest } from "./models/login_request";
+import { useNavigate } from "react-router-dom";
 
 interface FormValues {
   sourpy_username: string;
@@ -15,6 +16,8 @@ const initialValues: FormValues = {
 const Login: React.FC = () => {
   /// [pwdSecure] is using for password show/hide button
   const [pwdSecure, setPwdSecure] = useState(true);
+
+  const navigate = useNavigate();
 
   /// Send request if [Formik] doesn't have an error
   const handleLogin = (formValues: FormValues) => {
@@ -70,7 +73,6 @@ const Login: React.FC = () => {
                   className="w-1/2 h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                   errors={errors} //Formik errors object
                   touched={touched} //Formik touched props
-                  autoFocus={true}
                 />
                 {/* Username input end*/}
 
@@ -106,7 +108,6 @@ const Login: React.FC = () => {
                     className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                     errors={errors} //Formik errors object
                     touched={touched} //Formik touched props
-                    autoFocus={false}
                   />
                   {/* Password input end*/}
                 </div>
@@ -133,7 +134,10 @@ const Login: React.FC = () => {
                 {/* Login Button end*/}
                 <p className="cursor-default lg:text-lg text-xs">
                   Don't have an account yet?
-                  <span className="font-bold cursor-pointer hover:underline">
+                  <span
+                    className="font-bold cursor-pointer hover:underline"
+                    onClick={() => navigate("/register")}
+                  >
                     {" "}
                     Create a new Account!
                   </span>
