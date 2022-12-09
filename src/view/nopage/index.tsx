@@ -6,7 +6,7 @@ const NoPage: React.FC = () => {
   useEffect(() => {
     /// [navigate(-1)] means, navigate to last screen of navigate stack
     navigate(-1);
-  }, []);
+  }, [navigate]);
 
   return <Fragment></Fragment>;
 };

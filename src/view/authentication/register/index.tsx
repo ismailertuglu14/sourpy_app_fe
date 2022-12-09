@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
-import { LoginRequest } from "../login/models/login_request";
 import { validationSchema } from "./models/validation_schema";
 import { register } from "./services/register_service";
 import { RegisterRequest } from "./models/register_request";
@@ -26,8 +25,8 @@ const initialValues: FormValues = {
 const Register: React.FC = () => {
   /// [pwdSecure] is using for password show/hide button
   const [pwdSecure, setPwdSecure] = useState(true);
-  // const [pwdAgainSecure, setPwdAgainSecure] = useState(true);
-  const pwdRef = useRef(true);
+  const [pwdAgainSecure, setPwdAgainSecure] = useState(true);
+
   const navigate = useNavigate();
 
   /// Send request if [Formik] doesn't have an error
@@ -41,9 +40,9 @@ const Register: React.FC = () => {
           formValues.sourpy_email,
           formValues.sourpy_password
         );
-        // TODO: register function here.
-        // register(user)
+
         register(user);
+
         console.log("Request has been sent");
       } else {
         console.log("Some error occured");
@@ -76,7 +75,7 @@ const Register: React.FC = () => {
             const { errors, touched, values } = formik;
             return (
               <Form className="flex flex-col justify-center items-center  w-full h-screen ">
-                <p className="py-4 text-green-600 text-3xl italic cursor-default">
+                <p className="py-4 text-baseGreen text-3xl italic cursor-default">
                   Welcome to Sourpy
                 </p>
                 <div className="flex flex-row w-1/2 justify-between">
@@ -104,7 +103,7 @@ const Register: React.FC = () => {
                     <Field
                       id="sourpy_surname"
                       name="sourpy_surname"
-                      placeholder="surname"
+                      placeholder="Surname"
                       className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                       errors={errors} //Formik errors object
                       touched={touched} //Formik touched props
@@ -201,9 +200,9 @@ const Register: React.FC = () => {
                   <div className="absolute inset-y-0 right-0  flex items-center px-2">
                     <label
                       className="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer"
-                      onClick={() => setPwdSecure(!pwdSecure)}
+                      onClick={() => setPwdAgainSecure(!pwdAgainSecure)}
                     >
-                      {pwdSecure === true ? "Show" : "Hide"}
+                      {pwdAgainSecure === true ? "Show" : "Hide"}
                     </label>
                   </div>
                   {/* Password trailing end */}
@@ -213,7 +212,7 @@ const Register: React.FC = () => {
                     id="sourpy_password_again"
                     name="sourpy_password_again"
                     placeholder="Password Again"
-                    type={pwdSecure === true ? "password" : "text"}
+                    type={pwdAgainSecure === true ? "password" : "text"}
                     className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                     errors={errors} //Formik errors object
                     touched={touched} //Formik touched props
@@ -234,7 +233,7 @@ const Register: React.FC = () => {
 
                 {/* Register Button start*/}
                 <button
-                  className="text-white w-1/2 h-12 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
+                  className="text-white w-1/2 h-12  hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
                   onClick={() => handleLogin(values)}
                 >
                   Register

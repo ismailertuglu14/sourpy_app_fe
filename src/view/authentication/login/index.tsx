@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { validationSchema } from "./models/validation_schema";
 import { LoginRequest } from "./models/login_request";
 import { useNavigate } from "react-router-dom";
+import { login } from "./services/login_service";
 
 interface FormValues {
   sourpy_username: string;
@@ -28,7 +29,7 @@ const Login: React.FC = () => {
           formValues.sourpy_password
         );
         // TODO: Login function here.
-        // login(user)
+        login(user);
         console.log("Request has been sent");
       } else {
         console.log("Some error occured");

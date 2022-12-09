@@ -4,7 +4,7 @@ interface INetworkConstants {
 }
 
 export const NetworkConstants : INetworkConstants = {
-    baseUrl: "localhost:5454",
+    baseUrl: "http://localhost:8080",
     timeout: 30000
 }
 
