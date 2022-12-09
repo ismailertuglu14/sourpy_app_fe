@@ -4,5 +4,8 @@ import { RegisterRequest } from "../models/register_request";
 // FIXME: 
 export async function register(user:RegisterRequest){
     const body = JSON.stringify(user)
-    await axiosInstance.post("/auth/register",body)
+    await axiosInstance.post(
+        "/auth/register",
+        body
+    )
 }
