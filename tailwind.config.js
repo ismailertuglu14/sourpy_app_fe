@@ -4,7 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    colors:{
+      baseGreen: '#42BA96'
+    },
+    extend: {
+      fontFamily: {
+        LecklerliOne: ['Leckerli One'],
+      }, 
+    },
   },
   plugins: [],
 }
