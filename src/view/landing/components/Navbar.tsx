@@ -4,16 +4,11 @@ import { NavbarModels } from "../../../product/data/navbar";
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <nav className="bg-white px-2 sm:px-4  dark:bg-gray-900 fixed w-full z-20 top-0 left-0  border-b border-gray-200 dark:border-gray-600 py-2.5">
-      <div className="flex flex-wrap items-center justify-between mx-24">
+    <nav className="bg-white px-2 sm:px-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0  border-b border-gray-200 dark:border-gray-600 py-2.5">
+      <div className="flex flex-wrap items-center justify-between mx-8 ">
         {/* Logo start*/}
         <a className="flex items-center">
-          <img
-            src="./assets/icons/logo.png"
-            className="h-6 mr-3 sm:h-9"
-            alt="Sourpy"
-          />
-          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white cursor-pointer">
+          <span className="self-center text-3xl text-baseGreen whitespace-nowrap   font-normal  font-LecklerliOne cursor-pointer">
             Sourpy
           </span>
         </a>
