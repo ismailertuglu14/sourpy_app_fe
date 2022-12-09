@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import { LoginRequest } from "../login/models/login_request";
 import { validationSchema } from "./models/validation_schema";
+import { register } from "./services/register_service";
+import { RegisterRequest } from "./models/register_request";
 
 interface FormValues {
   sourpy_name: string;
-  sourpy_lastname: string;
+  sourpy_surname: string;
   sourpy_username: string;
   sourpy_password: string;
   sourpy_password_again: string;
@@ -14,7 +16,7 @@ interface FormValues {
 }
 const initialValues: FormValues = {
   sourpy_name: "",
-  sourpy_lastname: "",
+  sourpy_surname: "",
   sourpy_username: "",
   sourpy_password: "",
   sourpy_password_again: "",
@@ -24,19 +26,24 @@ const initialValues: FormValues = {
 const Register: React.FC = () => {
   /// [pwdSecure] is using for password show/hide button
   const [pwdSecure, setPwdSecure] = useState(true);
-
+  // const [pwdAgainSecure, setPwdAgainSecure] = useState(true);
+  const pwdRef = useRef(true);
   const navigate = useNavigate();
 
   /// Send request if [Formik] doesn't have an error
   const handleLogin = (formValues: FormValues) => {
     validationSchema.isValid(formValues).then(function (isValid) {
       if (isValid) {
-        const user = new LoginRequest(
+        const user = new RegisterRequest(
+          formValues.sourpy_name,
+          formValues.sourpy_surname,
           formValues.sourpy_username,
+          formValues.sourpy_email,
           formValues.sourpy_password
         );
-        // TODO: Login function here.
-        // login(user)
+        // TODO: register function here.
+        // register(user)
+        register(user);
         console.log("Request has been sent");
       } else {
         console.log("Some error occured");
@@ -47,7 +54,7 @@ const Register: React.FC = () => {
   return (
     <div className="flex flex-row w-full h-screen ">
       {/* Left Image Side */}
-      <div className="w-[100%] h-screen bg-green-400 flex">
+      <div className="hidden lg:flex lg:w-[100%] h-screen bg-green-400 ">
         <img
           src="/assets/images/login-banner.jpg"
           alt="Sourpy Login"
@@ -74,12 +81,12 @@ const Register: React.FC = () => {
                 </p>
                 <div className="flex flex-row w-1/2 justify-between">
                   {/* Name input start */}
-                  <div className="flex flex-col">
+                  <div className="flex flex-col mr-3">
                     <Field
                       id="sourpy_name"
                       name="sourpy_name"
                       placeholder="Name"
-                      className="w-60 h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
+                      className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                       errors={errors} //Formik errors object
                       touched={touched} //Formik touched props
                       autoFocus={false}
@@ -92,24 +99,24 @@ const Register: React.FC = () => {
                   </div>
                   {/* Name input end */}
 
-                  {/* Lastname input start */}
+                  {/* surname input start */}
                   <div className="flex flex-col">
                     <Field
-                      id="sourpy_lastname"
-                      name="sourpy_lastname"
-                      placeholder="Lastname"
-                      className="w-60 h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
+                      id="sourpy_surname"
+                      name="sourpy_surname"
+                      placeholder="surname"
+                      className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
                       errors={errors} //Formik errors object
                       touched={touched} //Formik touched props
                       autoFocus={false}
                     />
                     <p className="my-0 py-0">
-                      {errors.sourpy_lastname && touched.sourpy_lastname ? (
-                        <div>{errors.sourpy_lastname}</div>
+                      {errors.sourpy_surname && touched.sourpy_surname ? (
+                        <div>{errors.sourpy_surname}</div>
                       ) : null}
                     </p>
                   </div>
-                  {/* Lastname input end */}
+                  {/* surname input end */}
                 </div>
                 {/* Username input start*/}
                 <Field
