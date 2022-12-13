@@ -15,10 +15,10 @@ const SidebarItems = () => {
   const activePage = useAppSelector((state) => state.state.activePage);
 
   return (
-    <>
+    <div className="py-10">
       {dashboardItems.map(({ title, icon, component }) => (
         <div
-          className={`group flex  justify-center text-left pl-8 my-4 items-center p-2 text-base font-normal text-white hover:bg-gray-500 cursor-pointer
+          className={`group flex  justify-center text-left pl-8 my-6 items-center p-2 text-base font-normal text-white hover:bg-gray-500 cursor-pointer
           ${component == activePage ? " bg-gray-800 " : "  "} `}
           onClick={() => {
             component != null
@@ -44,7 +44,7 @@ const SidebarItems = () => {
           </p>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

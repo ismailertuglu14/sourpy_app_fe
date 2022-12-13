@@ -7,6 +7,7 @@ import { ApiModel } from "../../product/models/Api";
 import SidebarItems from "./components/SidebarItems";
 import SidebarPresence from "./components/SidebarPresence";
 import SidebarBottom from "./components/SidebarBottom";
+import SidebarLogo from "./components/SidebarLogo";
 const Dashboard: React.FC = () => {
   const [apis, setApis] = useState<[ApiModel]>();
 
@@ -31,15 +32,9 @@ const Dashboard: React.FC = () => {
           isSidebarOpen ? " left-0" : " -left-36"
         }  bg-black pt-6 transition-all duration-700`}
       >
-        <span
-          className={`relative flex  text-3xl  text-baseGreen whitespace-nowrap  font-normal  font-LecklerliOne cursor-pointer transition-all duration-700
-          ${isSidebarOpen ? " left-12 " : " -left-16 "}`}
-        >
-          Sourpy
-        </span>
+        <SidebarLogo />
         <SidebarItems />
         <SidebarPresence />
-
         <SidebarBottom />
       </div>
       {/* Sidebar End*/}

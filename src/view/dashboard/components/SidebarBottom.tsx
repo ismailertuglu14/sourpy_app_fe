@@ -1,9 +1,13 @@
-import { useAppSelector } from "../../../product/hooks/contextHooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../product/hooks/contextHooks";
 import SvgSettings from "../../../product/icons/Settings";
 import SvgSignout from "../../../product/icons/Signout";
 
 const SidebarBottom: React.FC = () => {
   const isSidebarOpen: boolean = useAppSelector((state) => state.state.sidebar);
+  const discpatch = useAppDispatch();
 
   return (
     <div
