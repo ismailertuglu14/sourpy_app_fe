@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
       {/* Panel Start */}
       <div
         className={`w-full m-8 ${
-          isSidebarOpen ? " ml-60 " : " ml-24 "
+          isSidebarOpen ? " ml-60 " : " ml-32 "
         } transition-margin duration-700`}
       >
         {activePage}
