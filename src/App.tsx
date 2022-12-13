@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./index.css";
+import Dashboard from "./view/dashboard";
 import Landing from "./view/landing";
-import NoPage from "./view/nopage/index";
+import NoPage from "./view/nopage";
 
 const Login = React.lazy(() => import("./view/authentication/login/index"));
 const Register = React.lazy(
@@ -12,26 +13,15 @@ const Register = React.lazy(
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route
-        path="/login"
-        element={
-          <React.Suspense fallback={<div>...</div>}>
-            <Login />
-          </React.Suspense>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <React.Suspense fallback={<div>...</div>}>
-            <Register />
-          </React.Suspense>
-        }
-      />
-      <Route path="*" element={<NoPage />} />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 

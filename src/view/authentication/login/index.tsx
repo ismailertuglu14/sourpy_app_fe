@@ -14,7 +14,7 @@ const initialValues: FormValues = {
   sourpy_password: "",
 };
 
-const Login: React.FC = () => {
+const Login = () => {
   /// [pwdSecure] is using for password show/hide button
   const [pwdSecure, setPwdSecure] = useState(true);
 

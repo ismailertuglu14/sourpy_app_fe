@@ -5,11 +5,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    
-    boxShadow:{
-      navbar: '0px 5px 4px rgba(0, 0, 0, 0.25);'
-    },
+
     extend: {
+      
+      boxShadow:{
+        navbar: '0px 5px 4px rgba(0, 0, 0, 0.25);'
+      },
 
       colors:{
         baseGreen: '#42BA96',
@@ -19,7 +20,10 @@ module.exports = {
       fontFamily: {
         LecklerliOne: ['Leckerli One'],
       },
-
+      transitionProperty: {
+        width: "width",
+        margin: "margin-left"
+      }
     },
   },
   plugins: [],

@@ -36,14 +36,14 @@ export const Navbar: React.FC = () => {
           <div className="flex">
             <button
               type="button"
-              className="text-white text-center font-medium bg-baseGreen px-4 py-1 mx-4 rounded-lg "
+              className="text-white hover:text-baseGreen text-center font-medium bg-baseGreen hover:bg-white transition-colors delay-75 px-4 py-1 mx-4 rounded-lg "
               onClick={() => navigate("/login")}
             >
               Sign In
             </button>
             <button
               type="button"
-              className="text-md text-center font-medium  text-baseGreen bg-white border-2 border-baseGreen  hover:text-baseGreen  focus:outline-none rounded-lg focus:ring-blue-300   px-4 py-1   mr-3 md:mr-0 "
+              className="text-md text-center font-medium  text-baseGreen hover:text-white  bg-white border-2 hover:bg-baseGreen border-baseGreen  transition-colors delay-75  focus:outline-none rounded-lg focus:ring-blue-300   px-4 py-1   mr-3 md:mr-0 "
               onClick={() => navigate("/register")}
             >
               Join
