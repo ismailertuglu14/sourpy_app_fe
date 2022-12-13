@@ -1,6 +1,6 @@
 import React from "react";
 const Overview: React.FC = () => {
-  return <div>Overview</div>;
+  return <div className="">Overview</div>;
 };
 
 export default Overview;
