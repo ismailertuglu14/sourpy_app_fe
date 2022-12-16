@@ -1,15 +1,13 @@
-import React, { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { lazy, Suspense } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./index.css";
-import Dashboard from "./view/dashboard";
+import PrivateRoute from "./product/routes/PrivateRoute";
 import Landing from "./view/landing";
-import NoPage from "./view/nopage";
 
-const Login = React.lazy(() => import("./view/authentication/login/index"));
-const Register = React.lazy(
-  () => import("./view/authentication/register/index")
-);
-// TODO: Other pages will be define as a Lazy React Component
+const Login = lazy(() => import("./view/authentication/login/index"));
+const Register = lazy(() => import("./view/authentication/register/index"));
+const Dashboard = lazy(() => import("./view/dashboard"));
+const NoPage = lazy(() => import("./view/nopage"));
 
 function App() {
   return (
@@ -18,7 +16,11 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute component={<Dashboard />} />}
+        />
+
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Suspense>
