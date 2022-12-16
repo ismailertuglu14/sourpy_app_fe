@@ -16,15 +16,14 @@ const SidebarItems = () => {
 
   return (
     <div className="py-10">
-      {dashboardItems.map(({ title, icon, component }) => (
+      {dashboardItems.map(({ title, icon, component }, index) => (
         <div
+          key={index}
           className={`group flex  justify-center text-left pl-8 my-6 items-center p-2 text-base font-normal text-white hover:bg-gray-500 cursor-pointer
           ${component == activePage ? " bg-gray-800 " : "  "} 
           `}
           onClick={() => {
-            component != null
-              ? dispatch(setActivePage(component))
-              : console.log("asd");
+            component && dispatch(setActivePage(component));
           }}
         >
           <p

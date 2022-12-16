@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { validationSchema } from "./models/validation_schema";
-import { LoginRequest } from "./models/login_request";
+import { ILoginRequest } from "./models/login_request";
 import { useNavigate } from "react-router-dom";
 import { login } from "./services/login_service";
 
@@ -15,7 +15,6 @@ const initialValues: FormValues = {
 };
 
 const Login = () => {
-  /// [pwdSecure] is using for password show/hide button
   const [pwdSecure, setPwdSecure] = useState(true);
 
   const navigate = useNavigate();
@@ -24,10 +23,11 @@ const Login = () => {
   const handleLogin = (formValues: FormValues) => {
     validationSchema.isValid(formValues).then(function (isValid) {
       if (isValid) {
-        const user = new LoginRequest(
-          formValues.sourpy_username,
-          formValues.sourpy_password
-        );
+        const user: ILoginRequest = {
+          username: formValues.sourpy_username,
+          password: formValues.sourpy_password,
+        };
+
         // TODO: Login function here.
         login(user);
         console.log("Request has been sent");
@@ -132,6 +132,7 @@ const Login = () => {
                 >
                   Login
                 </button>
+
                 {/* Login Button end*/}
                 <p className="cursor-default lg:text-lg text-xs">
                   Don't have an account yet?

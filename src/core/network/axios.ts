@@ -1,9 +1,9 @@
 import axios from "axios";
-import { NetworkConstants } from "../constants/network_constants";
+import { AxiosConstants } from "../constants/axios_constants";
 
 export const axiosInstance =  axios.create({
-    baseURL: NetworkConstants.baseUrl,
-    timeout: NetworkConstants.timeout,
+    baseURL: AxiosConstants.baseUrl,
+    timeout: AxiosConstants.timeout,
     headers: { "Content-Type":"application/json"}
 })
 
@@ -14,6 +14,7 @@ axiosInstance.interceptors.request.use(
   },
   function (error) {
     // Do something with request error
+    
     return Promise.reject(error);
   }
 );

@@ -1,7 +1,10 @@
 import Login from "../../view/authentication/login";
 import Register from "../../view/authentication/register";
 import Overview from "../../view/overview";
+import Products from "../../view/product";
+import SvgInvoice from "../icons/Invoice";
 import SvgPieChart from "../icons/PieChart";
+import SvgShop from "../icons/Shop";
 
 export interface IDashboardItemModel {
   title: string;
@@ -18,13 +21,13 @@ export const dashboardItems: IDashboardItemModels = [
     component: <Overview />,
   },
   {
-    title: "Orders",
-    icon: <SvgPieChart className="w-8 h-5" />,
-    component: <Login />,
+    title: "Products",
+    icon: <SvgShop className="w-8 h-5" />,
+    component: <Products />,
   },
   {
     title: "Inovices",
-    icon: <SvgPieChart className="w-8 h-5" />,
+    icon: <SvgInvoice className="w-8 h-5" />,
     component: <Register />,
   },
   {

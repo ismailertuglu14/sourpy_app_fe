@@ -14,7 +14,9 @@ module.exports = {
 
       colors:{
         baseGreen: '#42BA96',
-        baseGray: '#3C3A3A'
+        baseGray: '#3C3A3A',
+        dashboardGray: '#F5F8FA',
+        lightPink: '#F0416C'
       },
 
       fontFamily: {

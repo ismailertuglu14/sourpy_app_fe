@@ -1,16 +1,15 @@
 import { axiosInstance } from "../../../core/network/axios";
-import { ApiModel } from "../../../product/models/Api";
-import { CustomErrorResponse } from "../../../product/models/ErrorResponse";
+import { IApiModel } from "../../../product/models/Api";
+import { IErrorResponse } from "../../../product/models/ErrorResponse";
 
 export async function getUserApis(id: string) {
     
     try {
         const response = await axiosInstance.get(`/api/user/${id}`)
-        const apiList = Object.assign(new Array<ApiModel>(), response.data)
-        console.log(apiList)
+        const apiList:IApiModel = response.data
         return apiList
-    } catch (error) {
-        const errorRespone = Object.assign(new CustomErrorResponse(), error)
+    } catch (error: any) {
+        const errorRespone:IErrorResponse = error 
         console.log(errorRespone.message)
     }
 }

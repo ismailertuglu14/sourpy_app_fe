@@ -1,20 +1,13 @@
-import ApiTypeEnums from "../enums/ApiTypeEnums"
 
-interface IApiModel{
-    api_type?: ApiTypeEnums
+/**
+ *  @property {string} api_type = TRENDYOL | HEPSIBURADA | AMAZON etc.  
+ */
+
+export interface IApiModel{
+    api_type?: string
     api_key?: string
     api_secret_key?: string
     seller_id?: string
     user_id?: string
 }
 
-export class ApiModel implements IApiModel {
-    constructor(public api_key?: string, public api_secret_key?: string, public seller_id?: string,public api_type?: ApiTypeEnums,public user_id?: string){
-        this.api_key = api_key 
-        this.api_secret_key = api_secret_key
-        this.seller_id = seller_id
-        this.api_type = api_type
-        this.user_id = user_id
-    }
-    
-}

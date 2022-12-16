@@ -1,31 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../product/hooks/contextHooks";
-import { ApiModel } from "../../product/models/Api";
 import SidebarItems from "./components/SidebarItems";
 import SidebarPresence from "./components/SidebarPresence";
 import SidebarBottom from "./components/SidebarBottom";
 import SidebarLogo from "./components/SidebarLogo";
+import { IApiModel } from "../../product/models/Api";
 const Dashboard: React.FC = () => {
-  const [apis, setApis] = useState<[ApiModel]>();
-
-  // useEffect(() => {
-  //   getUserApis("1").then((response) => {
-  //     setApis(response);
-  //   });
-  //   console.log("calisti");
-  // }, [getUserApis]);
-
   const isSidebarOpen: boolean = useAppSelector((state) => state.state.sidebar);
   const activePage: any = useAppSelector((state) => state.state.activePage);
-  const dispatch = useAppDispatch();
-
-  console.log(isSidebarOpen);
 
   return (
-    <div className="flex w-full ">
+    <div className="flex w-full min-h-screen bg-dashboardGray ">
       {/* Sidebar Start */}
       <div
         className={`fixed h-screen w-52${
@@ -41,9 +29,9 @@ const Dashboard: React.FC = () => {
 
       {/* Panel Start */}
       <div
-        className={`w-full m-8 ${
-          isSidebarOpen ? " ml-60 " : " ml-32 "
-        } transition-margin duration-700`}
+        className={`flex flex-col w-full m-8 ${
+          isSidebarOpen ? " pl-52 " : " pl-40 "
+        } transition-all duration-700 `}
       >
         {activePage}
       </div>
