@@ -30,7 +30,7 @@ const Login = () => {
 
         // TODO: Login function here.
         login(user);
-        console.log("Request has been sent");
+        console.log("Request has been sent" );
       } else {
         console.log("Some error occured");
       }
