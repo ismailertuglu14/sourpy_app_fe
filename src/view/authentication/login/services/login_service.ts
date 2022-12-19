@@ -1,7 +1,7 @@
 import { ErrorResponse } from "@remix-run/router";
 import { AxiosError } from "axios";
 import { axiosInstance } from "../../../../core/network/axios";
-import { IErrorResponse } from "../../../../product/models/ErrorResponse";
+import CustomError from "../../../../product/models/ErrorResponse";
 import { ILoginRequest } from "../models/login_request";
 import { ILoginResponse } from "../models/login_response";
 import cookie from "js-cookie"
@@ -17,7 +17,6 @@ export async function login(user: ILoginRequest){
                 
     } catch (error:any) {
         cookie.remove(KeyEnums.SESSION_USER)
-        var errorResponse:IErrorResponse = error 
-        console.log(errorResponse.message)
+        console.log(CustomError.create(error.response.data.message))
     }
 }
