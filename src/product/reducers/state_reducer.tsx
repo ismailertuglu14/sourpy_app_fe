@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { lazy, ReactNode } from "react";
 import { RootState } from "../../core/redux/store";
 import Login from "../../view/authentication/login";
-import Overview from "../../view/overview";
+import Overview from "../../view/dashboard/features/overview/Overview";
 interface IInitialState {
   sidebar: boolean;
   activePage: any;
