@@ -1,7 +1,7 @@
 import ApexCharts from "apexcharts";
 import React, { useEffect, useRef } from "react";
 
-const ChartWidget1 = () => {
+const BarChart = () => {
   useEffect(() => {
     const chart = new ApexCharts(document.querySelector("#chart"), options);
     console.log("calisti");
@@ -22,7 +22,7 @@ const ChartWidget1 = () => {
   );
 };
 
-export default ChartWidget1;
+export default BarChart;
 
 var options = {
   chart: {
