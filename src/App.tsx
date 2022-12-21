@@ -6,7 +6,7 @@ import Landing from "./view/landing";
 
 const Login = lazy(() => import("./view/authentication/login/index"));
 const Register = lazy(() => import("./view/authentication/register/index"));
-const Dashboard = lazy(() => import("./view/dashboard"));
+const Dashboard = lazy(() => import("./view/dashboard/Dashboard"));
 const NoPage = lazy(() => import("./view/nopage"));
 
 function App() {
