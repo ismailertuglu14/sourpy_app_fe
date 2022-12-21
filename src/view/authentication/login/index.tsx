@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { validationSchema } from "./models/validation_schema";
 import { ILoginRequest } from "./models/login_request";
 import { useNavigate } from "react-router-dom";
 import { login } from "./services/login_service";
+import Cookies from "js-cookie";
+import { KeyEnums } from "../../../product/enums/KeyEnums";
 
 interface FormValues {
   sourpy_username: string;
@@ -16,11 +18,12 @@ const initialValues: FormValues = {
 
 const Login = () => {
   const [pwdSecure, setPwdSecure] = useState(true);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
 
   /// Send request if [Formik] doesn't have an error
-  const handleLogin = (formValues: FormValues) => {
+  const handleLogin = (event: any, formValues: FormValues) => {
     validationSchema.isValid(formValues).then(function (isValid) {
       if (isValid) {
         const user: ILoginRequest = {
@@ -28,9 +31,8 @@ const Login = () => {
           password: formValues.sourpy_password,
         };
 
-        // TODO: Login function here.
-        login(user);
-        console.log("Request has been sent" );
+        login(user, navigate);
+        console.log("Request has been sent");
       } else {
         console.log("Some error occured");
       }
@@ -81,7 +83,9 @@ const Login = () => {
 
                 <p className="my-0 py-0">
                   {errors.sourpy_username && touched.sourpy_username ? (
-                    <div>{errors.sourpy_username}</div>
+                    <div className="text-red-500 mb-4 font-semibold">
+                      {errors.sourpy_username}
+                    </div>
                   ) : null}
                 </p>
 
@@ -106,7 +110,7 @@ const Login = () => {
                     name="sourpy_password"
                     placeholder="Password"
                     type={pwdSecure === true ? "password" : "text"}
-                    className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline my-6"
+                    className="w-full h-14 shadow appearance-none border rounded py-2 px-3  text-black leading-tight focus:outline-none focus:shadow-outline mt-2 mb-6"
                     errors={errors} //Formik errors object
                     touched={touched} //Formik touched props
                   />
@@ -115,26 +119,36 @@ const Login = () => {
                 {/* Password errors start*/}
                 <p>
                   {errors.sourpy_password && touched.sourpy_password ? (
-                    <div>{errors.sourpy_password}</div>
+                    <div className="text-red-500 mb-4 font-semibold">
+                      {errors.sourpy_password}
+                    </div>
                   ) : null}
                 </p>
                 {/* Password errors end*/}
                 {/* Password label end*/}
 
-                <p className="flex w-1/2 justify-end cursor-pointer">
-                  Forgot password
-                </p>
+                <div className="flex w-1/2 justify-between ">
+                  <div className="flex mx-2">
+                    <input
+                      type="checkbox"
+                      name="sourpy_remember_me"
+                      id="sourpy_remember_me"
+                    />
+                    <p className="cursor-pointer mx-2">Remember Me</p>
+                  </div>
+                  <p className="cursor-pointer">Forgot password</p>
+                </div>
 
                 {/* Login Button start*/}
                 <button
-                  className="text-white w-1/2 h-12 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
-                  onClick={() => handleLogin(values)}
+                  className="text-white w-1/2 h-10 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
+                  onClick={(event) => handleLogin(event, values)}
                 >
                   Login
                 </button>
 
                 {/* Login Button end*/}
-                <p className="cursor-default lg:text-lg text-xs">
+                <p className="cursor-default lg:text-base text-xs my-2">
                   Don't have an account yet?
                   <span
                     className="font-bold cursor-pointer hover:underline"

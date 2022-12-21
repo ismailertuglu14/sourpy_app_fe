@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
     <div className="flex w-full min-h-screen bg-dashboardGray ">
       {/* Sidebar Start */}
       <div
-        className={`fixed h-screen w-52${
+        className={`fixed h-screen w-52 ${
           isSidebarOpen ? " left-0" : " -left-36"
         }  bg-black pt-6 transition-all duration-700`}
       >

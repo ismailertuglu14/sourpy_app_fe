@@ -9,6 +9,7 @@ export async function getUserApis(id: string) {
         const apiList:IApiModel = response.data
         return apiList
     } catch (error: any) {
-        console.log(CustomError.create(error.response.data.message))
+
+        console.log(CustomError.createFromIErrorResponse(error.response.data))
     }
 }
