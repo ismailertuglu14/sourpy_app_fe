@@ -1,6 +1,6 @@
 import Login from "../../view/authentication/login";
 import Register from "../../view/authentication/register";
-import Overview from "../../view/overview";
+import Overview from "../../view/dashboard/features/overview/Overview";
 import Products from "../../view/product";
 import SvgInvoice from "../icons/Invoice";
 import SvgPieChart from "../icons/PieChart";
