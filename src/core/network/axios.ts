@@ -4,7 +4,7 @@ import { AxiosConstants } from "../constants/axios_constants";
 export const axiosInstance =  axios.create({
     baseURL: AxiosConstants.baseUrl,
     timeout: AxiosConstants.timeout,
-    headers: { "Content-Type":"application/json"}
+    headers: { "Content-Type":"application/json", "Authorization": "Bearer set your token here"}
 })
 
 axiosInstance.interceptors.request.use(
