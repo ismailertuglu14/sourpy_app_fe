@@ -23,7 +23,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   /// Send request if [Formik] doesn't have an error
-  const handleLogin = (event: any, formValues: FormValues) => {
+  const handleLogin = (formValues: FormValues) => {
     validationSchema.isValid(formValues).then(function (isValid) {
       if (isValid) {
         const user: ILoginRequest = {
@@ -142,7 +142,7 @@ const Login = () => {
                 {/* Login Button start*/}
                 <button
                   className="text-white w-1/2 h-10 bg-green-700 hover:bg-green-800 focus:ring-green-300 font-medium text-xl rounded-lg  px-20 py-1  mb-2 my-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 "
-                  onClick={(event) => handleLogin(event, values)}
+                  onClick={() => handleLogin(values)}
                 >
                   Login
                 </button>

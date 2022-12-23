@@ -4,7 +4,7 @@ import ReactApexChart from "react-apexcharts";
 
 const PolarAreaChart = () => {
   return (
-    <div className=" w-1/3 h-[350px] border-[1px] p-3 mx-4 rounded-2xl transition-all duration-700 bg-white">
+    <div className="relative w-1/3 min-h-[200px] h-[350px] border-[1px] p-3 mx-4 rounded-2xl transition-all duration-700 bg-white">
       <ReactApexChart
         options={options}
         series={options.series}

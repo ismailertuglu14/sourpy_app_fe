@@ -44,8 +44,12 @@ const SidebarItems = () => {
           </p>
 
           <p
-            className={` absolute invisible text-black w-16 text-start
-          ${isSidebarOpen ? "  " : " group-hover:visible absolute -right-16 "}
+            className={` relative invisible text-white w-16 text-start
+          ${
+            isSidebarOpen
+              ? "  "
+              : " group-hover:visible absolute -bottom-8 -right-5 "
+          }
           `}
           >
             {title}

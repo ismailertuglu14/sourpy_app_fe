@@ -5,7 +5,7 @@ import { formatDate } from "../../../../../../product/utils/format_date";
 
 const SynchronizedChart = () => {
   return (
-    <div className="relative w-1/2 h-[350px] object-contain border-[1px] p-3 rounded-2xl transition-all duration-50 bg-white ">
+    <div className=" w-1/2 h-[350px] object-contain border-[1px] p-3 rounded-2xl transition-all duration-50 bg-white ">
       <ReactApexChart options={options} series={options.series} type="line" />
     </div>
   );
@@ -15,6 +15,7 @@ export default SynchronizedChart;
 
 var options = {
   relative: true,
+
   series: [
     {
       name: "Amazon",

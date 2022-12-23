@@ -29,8 +29,8 @@ const Dashboard: React.FC = () => {
 
       {/* Panel Start */}
       <div
-        className={`flex flex-col w-full m-8 ${
-          isSidebarOpen ? " pl-52 " : " pl-40 "
+        className={`fixed flex flex-col w-full m-8 ${
+          isSidebarOpen ? " -right-64 " : " -right-32"
         } transition-all duration-700 `}
       >
         {activePage}
