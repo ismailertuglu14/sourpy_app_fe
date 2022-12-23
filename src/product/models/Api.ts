@@ -11,3 +11,7 @@ export interface IApiModel{
     user_id?: string
 }
 
+export interface IProduct{
+    productCode?: number
+    pimCategoryId?: number
+}

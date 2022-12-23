@@ -18,7 +18,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route
           path="/dashboard"
-          element={<PrivateRoute component={<Dashboard />} />}
+          element={<Dashboard />}
         />
 
         <Route path="*" element={<NoPage />} />
